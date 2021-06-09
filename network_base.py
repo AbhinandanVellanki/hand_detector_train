@@ -74,7 +74,7 @@ class BaseNetwork(object):
         session: The current TensorFlow session
         ignore_missing: If true, serialized weights for missing layers are ignored.
         '''
-        data_dict = np.load(data_path, encoding='bytes').item()
+        data_dict = np.load(data_path, encoding='bytes', allow_pickle=True).item()
         print(data_dict.keys())
         for op_name, param_dict in data_dict.items():
             if isinstance(data_dict[op_name], np.ndarray):
