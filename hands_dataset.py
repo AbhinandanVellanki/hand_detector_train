@@ -57,7 +57,7 @@ def get_dataflow(path, is_train):
         ds = MapData(ds, pose_to_img)
         ds = PrefetchData(ds, 1000, multiprocessing.cpu_count() * 1)
     else:
-        ds = MultiThreadMapData(ds, nr_thread=16, map_func=read_image_url, buffer_size=1000)
+        ds = MultiThreadMapData(ds, num_thread=16, map_func=read_image_url, buffer_size=1000)
         ds = MapData(ds, pose_to_img)
         ds = PrefetchData(ds, 100, multiprocessing.cpu_count() // 4)
     return ds
