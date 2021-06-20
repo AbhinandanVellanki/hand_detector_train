@@ -206,6 +206,7 @@ if __name__ == '__main__':
                     del df_valid
                     df_valid = None
 
+                print("calculating loss")
                 # log of test accuracy
                 for images_test, heatmaps in validation_cache:
                     lss, lss_ll_heat, vectmap_sample, heatmap_sample = sess.run(
@@ -215,6 +216,7 @@ if __name__ == '__main__':
                     average_loss += lss * len(images_test)
                     average_loss_ll_heat += lss_ll_heat * len(images_test)
                     total_cnt += len(images_test)
+                print("calculated loss")
 
                 logger.info('validation(%d) %s loss=%f, loss_ll_heat=%f' % (total_cnt, args.tag, average_loss / total_cnt, average_loss_ll_heat / total_cnt))
                 last_gs_num2 = gs_num
