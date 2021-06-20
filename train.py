@@ -194,6 +194,7 @@ if __name__ == '__main__':
             if gs_num - last_gs_num2 >= 2000:
                 # save weights
                 saver.save(sess, os.path.join(modelpath, args.tag, 'model_latest'), global_step=global_step)
+                print("Saved model!")
 
                 average_loss = average_loss_ll_heat = 0
                 total_cnt = 0
