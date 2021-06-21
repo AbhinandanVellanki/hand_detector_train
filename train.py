@@ -198,15 +198,18 @@ if __name__ == '__main__':
 
                 average_loss = average_loss_ll_heat = 0
                 total_cnt = 0
+                
 
                 if len(validation_cache) == 0:
+                    print("Creating validation cache...")
                     for images_test, heatmaps in tqdm(df_valid.get_data()):
                         validation_cache.append((images_test, heatmaps))
                     df_valid.reset_state()
                     del df_valid
                     df_valid = None
+                    print("Done!")
 
-                print("calculating loss")
+                print("calculating loss...")
                 # log of test accuracy
                 for images_test, heatmaps in validation_cache:
                     lss, lss_ll_heat, vectmap_sample, heatmap_sample = sess.run(
@@ -216,7 +219,7 @@ if __name__ == '__main__':
                     average_loss += lss * len(images_test)
                     average_loss_ll_heat += lss_ll_heat * len(images_test)
                     total_cnt += len(images_test)
-                print("calculated loss")
+                print("Done!")
 
                 logger.info('validation(%d) %s loss=%f, loss_ll_heat=%f' % (total_cnt, args.tag, average_loss / total_cnt, average_loss_ll_heat / total_cnt))
                 last_gs_num2 = gs_num
