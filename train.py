@@ -203,6 +203,7 @@ if __name__ == '__main__':
                 if len(validation_cache) == 0:
                     print("Creating validation cache...")
                     for images_test, heatmaps in tqdm(df_valid.get_data()):
+                        print("progressing...")
                         validation_cache.append((images_test, heatmaps))
                     df_valid.reset_state()
                     del df_valid
