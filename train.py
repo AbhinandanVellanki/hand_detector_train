@@ -27,7 +27,7 @@ logger.addHandler(ch)
 if __name__ == '__main__':
     parser = argparse.ArgumentParser(description='Training codes for Openpose using Tensorflow')
     parser.add_argument('--datapath', type=str, default='data/hand_labels_synth')
-    parser.add_argument('--batchsize', type=int, default=8)
+    parser.add_argument('--batchsize', type=int, default=4)
     parser.add_argument('--input-width', type=int, default=368)
     parser.add_argument('--input-height', type=int, default=368)
     parser.add_argument('--gpus', type=int, default=4)
