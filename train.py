@@ -199,16 +199,16 @@ if __name__ == '__main__':
                 average_loss = average_loss_ll_heat = 0
                 total_cnt = 0
                 
-
-                if len(validation_cache) == 0:
-                    print("Creating validation cache...")
-                    for images_test, heatmaps in tqdm(df_valid.get_data()):
-                        print("progressing...")
-                        validation_cache.append((images_test, heatmaps))
-                    df_valid.reset_state()
-                    del df_valid
-                    df_valid = None
-                    print("Done!")
+                with tf.device(tf.DeviceSpec(device_type="GPU")):
+                    if len(validation_cache) == 0:
+                        print("Creating validation cache...")
+                        for images_test, heatmaps in tqdm(df_valid.get_data()):
+                            print("progressing...")
+                            validation_cache.append((images_test, heatmaps))
+                        df_valid.reset_state()
+                        del df_valid
+                        df_valid = None
+                        print("Done!")
 
                 print("calculating loss...")
                 # log of test accuracy
